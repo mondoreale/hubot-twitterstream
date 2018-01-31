@@ -125,7 +125,7 @@ module.exports = function(robot) {
       }
 
       function send() {
-        if(tweet.user.screen_name.trim() === screen_name.trim()){
+        if (!screen_name || (tweet.user.screen_name.trim() === screen_name.trim())) {
           var tweet_url = "https://twitter.com/"+tweet.user.screen_name+"/status/"+tweet.id_str
           var message = tweet.extended_tweet ? tweet.extended_tweet.full_text : tweet.text;
 
