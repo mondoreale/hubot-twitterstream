@@ -172,10 +172,11 @@ module.exports = function(robot) {
         }
       }
 
-      if (type === TYPES.FOLLOW && tweet.user.id_str === tag && !isReply(tweet)) {
-        return send();
+      if (type === TYPES.FOLLOW) {
+        if (tweet.user.id_str === tag && !isReply(tweet)) send();
+      } else {
+        if (!isReply(tweet)) send();
       }
-      if(!isReply(tweet)) send();
     });
 
     robot.logger.info('Started a new twitter stream', filter);
